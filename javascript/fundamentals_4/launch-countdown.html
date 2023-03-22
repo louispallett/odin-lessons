@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch Countdown</title>
+</head>
+<body>
+    <div class="output"></div>
+    <script>
+        /*This is the active learning project found here: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code*/
+
+        //Here we are defining a variable which selects the element in the HTML with the class "output"
+        let output = document.querySelector('.output');
+        //This defines the variable "output" as part of the HTML, so JS knows to look in there for it!
+        output.innerHTML = '';
+
+        //We need to define the variable which we are looping through. Since we are counting DOWN from 10, it should start at the first iteration - i.e. 10.
+        let i = 10;
+
+        /*In the while loop, we are saying "While this variable is (operator) to this", so here we are saying while it is greater than or EQUAL to 0, the while loop should continue (in other)
+        words, UP TO AND INCLUDING 0. If we set it as >= 10, well "i" is already equal to 10, so the iteration just stops there. Alternatively, if we set it to <= 10, well it's already equal to
+        10 AND there are INFINITE numbers underneath it, so it doesn't know when to stop, and loops forever!
+
+        Because we are counting DOWN, the final operand should be the LAST iteration. Hence here this is ZERO.
+        */
+        while (i >= 0)
+        {
+            //This sets the variable "para" equal to creating a new <p></p> element
+            const para = document.createElement('p')
+            //Straightforward if else if statement to determine what should be returned to the <p></p> element.
+            if (i === 10)
+            {
+                //Result is the text given to the para variable (the <p></p> element)
+                para.textContent = `Countdown in ${i}`;
+            } else if (i === 0)
+            {
+                para.textContent = `${i} - Blast off`;
+            } else 
+            {
+                para.textContent = i;
+            }
+
+            //Critically, we need to pass the variable para (which we defined in the if statement above) into the output variable via a 'appendChild' command. This actually prints out the result
+            //without it, you just get a blank page!
+            output.appendChild(para);
+            //Finally, we have to provide a final expression. The variable i started at 10, and we want it to countdown, hence we decrement it. We have expressed above that we wish to loop to 
+            //continue until it is equal to 0. Hence it counts down until it hits 0!
+            i--;
+        }
+
+        /*REFLECTION
+        
+            Looking at this now it's complete, what was difficult was getting your head around the maths. When counting down and wanting the MAX number to be the current value of the variable
+            (in this case 10), we need to DECREMENT the variable - that's obvious. But there is a fatal error that in the WHILE loop, you need to define the condition as the FINAL number you 
+            want it to pass through (it would be the same if you were counting up, but this would be the MAX rather than MIN number). 
+            
+            So, initially we were saying while (i <= 10) - because we want the loop to carry on whilst it's less than 10, right? No, because it goes beyond zero - to -1, -2, etc. and then forever!
+
+            The HTML - JS reaction stuff (appendChild() and createElement()) was a little tricky, but that's because we haven't really gotten on to that yet!
+        */
+        
+        
+    </script>
+</body>
+</html>

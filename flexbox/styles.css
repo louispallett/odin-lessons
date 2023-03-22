@@ -1,0 +1,222 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.menu-container
+{
+    color: #fff;
+    background-color: #5995DA;  /* Blue */
+    padding: 20px 0;
+    /*....*/
+    display: flex;
+    justify-content: center; /*Same effect as adding a margin: 0 auto declaration */
+    /*Notice that we added a property to the 'parent' element (the flex container), rather than the element we
+    wanted to centre (the flex item). This is a common theme in flexbox. 
+
+    Other values to justify-content are: 
+    center
+    flex-start
+    flex-end
+    space-around
+    space-between
+    */
+}
+
+.menu 
+{
+    border: 1px solid #fff; /*For debugging*/
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login
+{
+    margin-left: 20px;
+}
+
+.header-container
+{
+    color: #5995DA;
+    background-color: #D6E9FE;
+    display: flex;
+    justify-content: center;
+}
+
+.header 
+{
+    width: 900px;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social,
+.logo,
+.subscribe
+{
+    border: 1px solid #5995DA;
+}
+
+.social,
+.subscribe
+{
+    align-self: flex-end;
+    margin-bottom: 20px;
+}
+/*The above code refers to vertical alignment (align-self). This has sent the social image and subscribe div
+to the bottom of the box (flex-end) - or the .header class.
+You can align elements in other ways using the same values as the 'align-items' property, which are listed below: 
+center
+flex-start (top)
+flex-end (bottom)
+stretch
+baseline
+*/
+
+.logo img
+{
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.social img
+{
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.photo-grid-item_first-item img,
+.photo-grid-item img,
+.photo-grid-item_last-item img
+{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.photo-grid-container
+{
+    display: flex;
+    justify-content: center;
+}
+
+.photo-grid 
+{
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row; /*Using 'row-reverse' only reverses the rows within each column - does not reverse the entire list of images*/
+  align-items: center;
+}
+/*As useful as things like row-reverse are, it is always important to seperate content from presentation. Changing this order
+is purely a professional practive and HTML should still make sense without styles applied to it (i.e. left to right, and top
+to bottom*/
+
+.photo-grid-item
+{
+    border: 1px solid #fff;
+    width: 300px;
+    height: 300px;
+}
+/*The two styles below in the first-item and last-item classes - "order" works across row/column boundaries. This will switch the first
+and last items, even though they appear on different rows.*/
+.first-item
+{
+    order: 1;
+}
+
+.last-item 
+{
+    order: -1;
+}
+
+/*In the two classes below, we begin to experiment with flexible items. All the previous examples revolved around items with fixed or
+content-defined widths. This lets us focus on the positioning aspects of flexbox, but we have yet to look at the "flexible box" nature.
+They are flexible (as the name suggests) and therefore can shrink and stretch, matching the width of their containers.
+
+The flex property defines the width of the individual items within their containers (or allows them to have flexible widths). Working as 
+a 'weight', it tells the flex container how to distribute that extra space to each item. So, an item with a flex value of 2 will grow twice
+as fast as an item with a (default) value of 1.*/
+.footer
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-item
+{
+    border: 1px solid #fff;
+    background-color: #D6E9FE;
+    height: 200px;
+    flex: 1; /*This is the flex value talked about in the paragraph above.*/
+}
+
+/*As stated above, we can make the flex value greater, making the item 'grow' faster than the others - see below.*/
+
+.footer-three
+{
+    flex: 2; /*This will cause the third item to take up twice as much space as each other item. Since their are three items, that means item
+    3 takes up 50% of the space whilst items 1 and 2 each take up 25%.*/
+}
+
+/*Comparatively, 'justify-content' distributes extra space <em>between</em> items. This is similar, but instead it's distributing that space
+into the items themselves, resulting in  full control over how flex items fit into their containers.*/
+
+/*
+Static Item widths in the .footer-one, .footer-three below
+
+    Flexible boxes can be mixed and matched with fixed width ones. Below, 'flex: initial' is used to fall back to the item's explicit width property.
+    This lets us combine static and flexible boxes in complex ways.
+
+    Without the below 'flex: initial' line, the flex: 1; declaration would be inherited from the .footer-item rule, causing the width properties to
+    be ignored. 'initial' fixes that, giving us a flexible layout that contains fixed-width items.
+*/
+.footer-one,
+.footer-three
+{
+    background-color: #5995DA;
+    flex: initial;
+    width: 300px;
+}
+
+/*
+Flex items and auto-margins
+
+    Auto-margins are special in flexbox. They can be used as an extra <div> when trying to align a group of items to the left/right of a container. 
+    In the index.html file, we nested the signup and login elements in a 'links' element and added a display: flex; and justify-content: flex-end;
+    However, if we simply delete this CSS and then remove the nest, thus making it a bit neater and add the below 'auto' margin, we get the same effect!
+*/
+.signup
+{
+    margin-left: auto;
+}
+
+/*Auto margins eat up all that extra space in the flex-container, so instead of distributing the items equally, this moves the .signup and any following
+items (in this case, .login) to the right side of the container.*/
+
+/*Summary
+
+Use display: flex; to create a flex container.
+Use justify-content to define the horizontal alignment of items.
+Use align-items to define the vertical alignment of items.
+Use flex-direction if you need columns instead of rows.
+Use the row-reverse or column-reverse values to flip item order.
+Use order to customize the order of individual elements.
+Use align-self to vertically align individual items.
+Use flex to create flexible boxes that can stretch and shrink.
+*/

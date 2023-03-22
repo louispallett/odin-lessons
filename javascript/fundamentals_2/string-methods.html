@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*Below is the full list of JS string methods:
+        
+            String length
+            String slice()
+            String substring()
+            String substr()
+            String replace()
+            String replaceAll()
+            String toUpperCase()
+            String toLowerCase()
+            String concat()
+            String trim()
+            String trimStart()
+            String trimEnd()
+            String padStart()
+            String padEnd()
+            String charAt()
+            String charCodeAt()
+            String split()
+
+        The length property returns the length of a string:*/
+
+        let text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let length = text.length;
+        console.log(length);
+
+        /*Extracting String Parts
+        
+        There are three methods for extracting a part of a string:
+        
+        slice(start, end)
+        substring(start, end)
+        substr(start, length) 
+        
+        JS String slice()
+        
+        slice() extracts a part of a string and returns the extracted part in a new string.
+        
+        The method takes 2 parameters: start position, and end position (end not included)*/
+
+        let text2 = "Apple, Banana, Kiwi";
+        let part = text2.slice(7, 13);
+        console.log(part); //Banana
+
+        //If you omit the second parameter, the method will slice out the rest of the string:
+
+        let secondPart = text2.slice(7)
+        console.log(secondPart); //Banana, Kiwi
+
+        //If a parameter is negative, it is counted from the end of the string:
+
+        let backwardsPart = text2.slice(-12);
+        console.log(backwardsPart); //Banana, Kiwi
+
+        //And similarly with two positions:
+        let backwardsPart2 = text2.slice(-12, -6);
+        console.log(backwardsPart2); //Banana
+
+        /*Substring
+        
+        substring() is similar to slice().
+        
+        The difference is that start and end values less than 0 are treated as zero in substring()*/
+
+        let substringPart = text2.substring(7, 13);
+        console.log(substringPart); //Banana
+
+        /*String substr()
+        
+        similar to slice()
+        
+        The difference is that the second parameter specifies the length of the extracted part.*/
+
+        let thisPart = text2.substr(7, 6); //So here, we are saying character number 7 from and then 6 characters to the end.
+        console.log(thisPart); //Banana
+
+        /*Replacing String Content
+        
+        The replace() method replaces a specified value with another value in a string:*/
+
+        let text3 = "Please visit Microsoft!";
+        let newText3 = text3.replace("Microsoft", "Linux");
+        console.log(text3); //Please visit Microsoft!
+        console.log(newText3); //Please visit Linux!
+
+        //NOTE: the replace() method ONLY replaces the first match. 
+
+        //To replace case insensitive, use a regular expression with an /i flag (insensitive):
+
+        let newText3a = text3.replace(/MICROSOFT/i, "me");
+        console.log(newText3a);
+
+        /*JS String ReplaceAll()
+        
+        In 2021, JS introduced the string method replaceAll():*/
+
+        let text4 = "I love cats. Cats are very easy to love. Cats are very popular.";
+        text4 = text4.replaceAll("Cats","Dogs");
+        text4 = text4.replaceAll("cats","dogs");
+
+        console.log(text4); //I love dogs. Dogs are very easy to love. Dogs are very popular
+
+        //If the parameter is a regular expression, the global flag must be set down, otherwise a TypeError is thrown.
+
+        /*JS String concat()
+        
+        concat() joins two or more strings:*/
+
+        let textA = "Hello";
+        let textB = "World";
+        let textC = textA.concat(" ", textB);
+        console.log(textC); //Hello World
+
+        //Same as the plus (+) operator. These two lines are the same:
+
+        textD = "Hello" + " " + "World!";
+        textE = "Hello".concat(" ", "World!");
+
+        //NOTE: Strings are immutable: they cannot be changed, only replaced.
+
+        /*JS String trim()
+        
+        The trim() method removes any whitespace from both sides of a string:*/
+
+        let text1A = "        Hello World!         ";
+        let text1B = text1A.trim(); //Hello World!
+
+        //You can probably guess what trimStart() and trimEnd() do.
+
+        /*A full list of String methods
+        
+        This can be found here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String*/
+
+    </script>
+</body>
+</html>

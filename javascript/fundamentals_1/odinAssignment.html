@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(24 + 88);
+
+        console.log(10 + 42 + 12 + 2 + 9 + 53);
+
+        console.log((4 + 6 + 9) / 77);
+
+        let a = 10;
+        console.log(a);
+        console.log(9 * a);
+
+        let b = 7 * a;
+        console.log(b);
+
+        const max = 57;
+        let actual = max - 13;
+        let percentage = actual / max;
+        console.log(percentage);
+
+        /*Basic Maths in JavaScript
+        
+        In programming we have three types of numbers:
+        
+        Integers        Float-pointing numbers without a franction. THey can be either positive or negative (10, 234, or -5)
+        Floats          Also known as floating point numbers have decimal points and places - 12.5 and 56.7786543.
+        Doubles         A spacific type of floating point number that have greater precision (i.e. more decimal places)
+
+        In JS however, we only have two types, and one is rarely used. This is simply 'Number'. The other type is BigInt and this is just for 
+        MASSIVE integers.
+        */
+
+        const myInt = 5;
+        const myFLoat = 6.667;
+
+        console.log(typeof myInt);
+        console.log(typeof myFLoat);
+
+        /*Useful number methods
+        
+        We can implement a number of useful methods with numbers - one of this is the 'toFixed()' method, which we use to round a number to a fixed number of decimal
+        places. For exmaple, as below:*/
+
+        const lotsOfDecimal = 1.766584958675746364;
+        console.log(lotsOfDecimal);
+        const twoDecimalPlaces = lotsOfDecimal.toFixed(2);
+        console.log(twoDecimalPlaces);
+
+        /*Converting to number data types
+        
+        Sometimes you need to use a number which has been entered as a String, but you need it as a number. A very common case is during the completion of a form, where the input type is text.
+        The way to solve this is by passing the string value into the Number() constructor to return a number version of the same value:
+
+        
+        console.log(myNumber += 3); //comes out as 743, because it's adding a number and a string.
+
+        To fix this, you can do the following:
+        */
+        let myNumber = "74";
+        console.log(myNumber = Number(myNumber) + 3); //outputs 77, as expected!
+
+        console.log(60 % 3); //outputs 0, which is correct, as 3's fit perfectly into 60!
+        
+        /*Increments and Decrements
+        
+        These are very useful features and used a lot. For example, if you are designing a guessing game, you'll want to keep track of how many times the player guesses - here you can use an increment operator
+        (or a decrement operator if they only have a finite number of guesses!)
+        
+        However, you cannot use either directly on a number, like so:
+        
+        3++;
+        
+        They have to be applied directly to a variable, for example:*/
+        
+        let num2 = 6;
+        num2--;
+        console.log(num2); //outputs 5.
+
+        /*Compression Operators
+        
+        Sometimes we want to run true/false tests, then act accordingly depending on the result of that test - to do this we run comparison operators:
+        
+        Operator        Name                        Purpose                                                                         Example    
+        ===             Strict equality             Tests whether the left and right values are identical to one another            5 === 2 + 4 
+        !==             Strict-non-equality         Tests whether the left and right values are not identical to one another        5 !== 2 + 3
+        <               Less than                   Tests whether the left value is smaller than the right one.                     10 < 6  
+        >               Greater than                Tests whether the left value is greater than the right one.                     10 > 20
+        <=              Less than or equal to       Tests whether the left value is smaller than or equal to the right one.         3 <= 2
+        >=              Greater than or equal to    Tests whether the left value is greater than or equal to the right one.         5 >= 4
+        
+        */
+
+
+    </script>
+</body>
+</html>

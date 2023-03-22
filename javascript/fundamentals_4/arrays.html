@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <ul></ul>
+    <script>
+        /*Arrays
+        
+        There are two ways to create an array:*/
+
+        const cars = ["Saab", "BMW", "Volvo"];
+
+        /*You can also do this spanning multiple lines:*/
+
+        const cars2 = 
+        [
+            "Saab",
+            "BMW",
+            "Volvo"
+        ];
+
+        //You can call an array into the log like so:
+
+        console.log(cars[1]); //BMW (remember, arrays count from 0!)
+
+        /*You can also declare an array like below, however this is not recommended as it is not as clean:*/
+
+        const cars3 = new Array("Saab", "BMW", "Volvo"); //This does exactly the same thing, but is just more word-heavy.
+
+        //You can change an array element like so:
+
+        cars[1] = "Vauxhall";
+        console.log(cars[1]); //Vauxhall
+
+        /*Access the full array
+        
+        To access the array in JS, you can refer to the array name:*/
+
+        document.getElementById("demo").innerHTML = cars; //so, here we are saying, look at this document and in it the element by the id named "demo". Now, in the HTML print (=) the cars array.
+
+        /*Arrays vs Objects
+        
+        Technically, arrays are a special type of object. If you ask JS to print out the typeof for an array, it will return "object"
+        
+        But arrays are just best described as an array - they use numbers to access their "elements" (such as "cars[1]" Objects on the other hand use names to access it's "members". In the example,
+        person.firstname would return "John":*/
+
+        const person = {firstName: "John", lastName: "Doe", age: 46};
+
+        console.log(person.firstName); //John
+
+        /*Array elements can be objects
+        
+        JS variables can be objects - like we said above, arrays are a special kind of object.
+        
+        Because of this, you can have variables of different types in the same Array.
+        
+        You can have objects in an array. You can have functions in an array, and you can even have arrays in an array!*/
+
+        /*Array Properties and Methods
+        
+        The really power of arrays are the built in methods, such as:*/
+
+        console.log(cars.length); //Returns the number of elements (in this case 3)
+        console.log(cars.sort()); //Sorts the array (in this case returns alphabetically!)
+
+        //You can also assign these values as variables, so it's a little easier. For example, a small class alphabetically:
+
+        const studentNames = ["Joe", "David", "Louis", "Sonia", "Ollie", "Rhianna", "Megan"];
+
+        let studentNamesSort = studentNames.sort();
+
+        console.log(studentNamesSort); //(7) ['David', 'Joe', 'Louis', 'Megan', 'Ollie', 'Rhianna', 'Sonia']
+
+        /*Accessing the last array of an element
+        
+        You can of course access the first array like so: cars[0], but to access the last array, you can either give the number order, but in the case of a long list of 
+        elements, you can do this (rather than counting!)*/
+
+        let lastStudent = studentNamesSort[studentNamesSort.length - 1];
+        console.log(lastStudent); //Sonia
+
+        /*Adding Array Elements
+        
+        The easiest way to add a new element to an array is using the push() method:*/
+
+        studentNames.push("Katie"); //Adds "Katie" to studentNames
+
+        //In JS, arrays ALWAYS use numbered indexes (i.e. cars[0], cars[1] etc.)
+
+        /*The difference between arrays and objects:
+        
+        In JS, arrays always use numbered indexes.
+        In JS, objects always use named indexes*/
+
+        /*JS new Array()
+        
+        JS has a built in array constructor "new Array()".
+        
+        However, you can just use [] instead. These two create exactly the same array*/
+
+        const points = new Array(1, 2, 3, 4);
+        const points2 = [1, 2, 3, 4];
+
+        /*How to recognise an Array
+        
+        The problem is that the JS operator typeof will return an object:*/
+
+        let type = typeof studentNames; 
+        
+        console.log(type); //"object"
+
+        //To get around this, there are two solutions - one is to use the Array.isArray() or the instanceof Array commands - both return true if something is an array:
+
+        console.log(Array.isArray(studentNames)); //true
+
+        console.log(studentNames instanceof Array); //true
+
+        
+        
+        
+        </script>
+
+
+</body>
+</html>

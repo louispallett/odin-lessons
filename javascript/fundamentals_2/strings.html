@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const string = "The revolution will not be televised.";
+
+        console.log(string);
+
+        /*if the browser cannot find the string (because you have missed the quotation marks!) the error will be "missing; before statement".
+
+        alternatively, it may throw the error "unterminated string literal".
+
+        The following will work if you previously defined the variable string:*/
+
+        const badString = string;
+        console.log(badString);
+
+        //bad string is now set to the same value as string.
+
+        /*Escaping characters in a string
+        
+        As you know, you can use either single or double quotation marks for strings. I recommend using double, as when you want to include an 
+        apostraphe in a sentence, it will confuse the browser and think you are ending the string! However, if you do use this, there is a way to 
+        get around it (and is still useful when you want to use double quotation marks in a string):*/
+
+        const bigmouth = 'I\'ve got no right to take my place...';
+        console.log(bigmouth);
+
+        //So, we just put a backslash (\) in front of the apostraphe (or quotation mark - it works for \" too).
+
+        /*Concatenation with ${...}
+        
+        We learned about this in the data types, but you can also use it to join together two variables:*/
+
+        const one = "Hello, ";
+        const two = "how are you?";
+        const joined = `${one}${two}`;
+        console.log(joined); //"Hello, how are you?"
+
+        /*Converting numbers to strings and strings to numbers
+        
+        We can use the Number() to covert a string to a number and toString() to convert a number to a string:*/
+
+        const myString = "123";
+        const myNum = Number(myString);
+        console.log(typeof myNum); //Number
+
+        const myNum2 = 123;
+        const myString2 = myNum2.toString();
+        console.log(typeof myString2); //String
+
+        /*Including expressions in strings
+        
+        You can include JS expressions in template literals, as well as simple variables, and the results will be included in the result:*/
+
+        const song = "Fight the Youth";
+        const score = 9;
+        const highestScore = 10;
+        const output = `I like the song ${song}. I gave it a score of ${
+        (score / highestScore) * 100
+        }%.`;
+        console.log(output); // "I like the song Fight the Youth. I gave it a score of 90%."
+    </script>
+
+    <button>Press me</button>
+</body>
+</html>

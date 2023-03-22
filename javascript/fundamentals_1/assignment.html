@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignments</title>
+</head>
+<body>
+    <script>
+        /*JavaScript Numbers
+        
+        JavaScript only has one type of number - they can be written with or without decimals:*/
+
+        let x = 3.13;
+        let y = 3;
+
+        //Extra large or small numbers can be written with scientific (exponent) notion:
+
+        let xa = 123e5;     //12300000
+        let ya = 123e-5;    //0.00123
+        
+        //What the 'e' does is moves the number up or down by that stated e number - so in the first example, this adds 5 zeros to the number.
+
+        /*JavaScript numbers are always 64-bit floating point
+        
+        Unlike many other languages, JS does not define different types of numbers (like int, short, long, etc. in Java) 
+        JavaScript numbers are always stored as double precision floating point numbers, following the international IEEE 754 standard.
+        
+        Integer Precision - integers (umbers without a period or exponent notation) are accurate up to 15 digits:*/
+
+        let xb = 999999999999999 //will be 999999999999999
+        let yb = 9999999999999999 // will be 10000000000000000
+
+        //Whereas, the maximum number of decimals is 17.
+
+        /*Floating precision
+        
+        Floating point arithmetic (which JS uses) is not always 100% accurate:*/
+
+        let xc = 0.2 + 0.1; //would output 0.3000000000004
+
+        //So to solve this, it helps to multiply and then divide:
+
+        let xd = (0.2 * 10 + 0.1 * 10) / 10; //outputs 0.3
+
+        /*Adding Strings and numbers
+        
+        You cannot add strings to numbers and get a resulting number. This may be obvious in the below example:*/
+
+        let xe = "10";
+        let ye = 20;
+        let z = xe + ye; //outputs 1020, because it is converted into a string.
+
+        //HOWEVER, this also is the same with sentences too - which is where it differs from, say, Java:
+
+        let xf = 10;
+        let yf = 20;
+        let za = "The result is: " + xf + yf; //Would actually output "The result is 1020" - not 30!
+    
+        //A common mistake would be to expect the below to return 102030:
+
+        let xg = 30;
+        let zb = xf + yf + za; //Actually returns 3030
+
+        //The reason is that JS works left to right. So it first adds 10 to 20, giving 30 and then 30 to the string 30, giving 3030.
+
+        /*Numeric Strings
+        
+        JS strings can have numerical content and so JS will try to convert strings to numbers in all numeric operations The below would work:
+        
+        let x = "100";
+        let y = "10";
+        let z = x / y   Would output 10
+        
+        This would also work with multiplication (*) and subtraction (-) but NOT addition (+)
+        This is because JS uses + to concatenate strings.*/
+
+        /*Assignment Operators
+        
+        The most common assignment operator you see is the '=' one, which is obviously used in variables. However, there is a whole list of assignment
+        operators, as listed below:
+        
+        Operator        Name                        Purpose                                                                                                     Example         Shortcut for
+        +=              Addition assignment         Adds the value on the right to the variable value on the left, then returns the new variable value.         x += 4;         x = x + 4;
+        -=              Subtraction assignment      Subtracts the value on the right from the variable value on the left, and returns the new variable value.   x -= 3;         x = x - 3;
+        *=              Multiplication assignment   Multiplies the variable value on the left by the value on the right, and returns the new variable value.    x *= 3;         x = x * 3;
+        /=              Division assignment         Divides the variable value on the left by the value on the right, and returns the new variable value.       x /= 5;         x = x / 5;               
+        
+        These can also be used in expressions, such as:*/
+
+        let mainNum = 3; //mainNum contains the value of 3
+        let multiNum = 4; //multiNum contains the value of 4
+        mainNum *= multiNum; //mainNum now contains the value of 12 (i.e. 3 * 4)
+
+        
+
+    </script>
+</body>
+</html>

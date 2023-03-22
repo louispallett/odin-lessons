@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Messages</title>
+</head>
+<body>
+    <script>
+        /*This lesson looks over:
+        
+        1   Name at least three kinds of JS errors
+        2   Identify two parts of an error message that help you find where the error originates
+        3   Be able to understand how to research and resolve errors
+        
+        The Anatomy of an Error
+        
+        An error consists of a name/type and a message. They contain crucial information which will help you solve any problems and what is causing the issue.
+        
+        Let's assume we have written the following code:*/
+
+        const a = "Hello"
+        const b = "World"
+
+        console.log(c)
+
+        /*This will run, but it will generate an error. This is called a "throwing error". This error is called a ReferenceError:
+        
+            Uncaught ReferenceError: c is not defined
+                at error-messages.html:26*/
+
+        /*Common types of errors
+        
+        1   Syntax error
+            
+                This is caused when the code you are running is not written correctly. For example:*/
+
+                function helloWorld()
+                {
+                    console.log "Hello World!"
+                }
+
+                /*we forgot to add the parentheses for console.log()!
+
+        2   Reference Error
+                
+                As above, these arise because whatever variable you are trying to reference doesn't exist (WITHIN the current scope - remember function declarations 
+                and expressions) - or it has simply been spelled incorrectly!
+
+        3   Type Error
+
+                These errors are thrown for a few different reasons:
+
+                    an operand or argument passed to a function is incompatible with the type expected by that operator or function;
+                    or when attempting to modify a value that cannot be changed;
+                    or when attempting to use a value in an inappropriate way.    
+
+                Say we have two strings that you would like to combine to create one message, such as below:*/
+
+                const str1 = "Hello";
+                const str2 = "World!";
+                const message = str1.push(str2);
+
+                /*Uncaught TypeError: str1.push is not a function
+                
+                This is quite common but confuses a lot of learners, because .push IS a method - however, it's a method for arrays, NOT strings. Hence, it is "not a 
+                function" in this case - we should change .push() to .concat() - which is a proper string method - and the code will run.
+                
+        Remember the Chrome Debugger (https://developer.chrome.com/docs/devtools/javascript/) - you can set breakpoints to understand what is going on.
+        
+        And finally, make use of the console. You can use console.log() but also console.table() and console.trace() - there is a full list here (https://www.w3schools.com/jsref/obj_console.asp)
+        
+    Warnings: one final thing, warnings are not errors - if you see a warning this is an 'advisory' note - they should be resolved if possible, but won't stop the code running at
+    that time (but may if circumstances change)*/
+
+    </script>
+</body>
+</html>

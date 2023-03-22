@@ -1,0 +1,31 @@
+.container
+{
+    border: 5px solid #ffcc5c;
+    display: flex;
+}
+
+.home
+{
+    flex: 1 1 200px;
+}
+
+.logout
+{
+    flex: 10 1 200px;
+}
+
+/*
+Flex grow, shrink, and basis
+
+    In the example above, we are actually writing short-hand for the below, fleshed-out code. The numbers they correspond to are the rate at which they grow - at the
+    moment, grow and shrink are set the same, so the result is that each box grows and shrinks at the same rate: 
+
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 200px;
+    
+    But if we were to change the flex-grow to 2 in the .home, that would result in the home box growing at twice the rate as the .logout, assuming the flex-grow here
+    was set to 1.
+    */
+
+    

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Operators</title>
+</head>
+<body>
+    <script>
+        /*Basic Operators
+        Terms: "unary","binary", "operand"
+
+        Operands, as we learned before are the two numbers which make up an equation left and right of the operator. For example, in the equation 5 * 2 = 10, 5 and 2 are
+        the operands. Similarly, if we had two variables named left and right in the equation left + right = x, the operands would be "left" and "right" (you see what I 
+        did there?!)
+        >>NOTE: Sometimes operands are called arguments.
+
+        An OPERATOR is "unary" if it has a single operand. For example, the unary negation "-" reverses the sign of a number:
+        */
+
+        let x = 1;
+
+        x = -x;
+        console.log(x); //-1, unary negation was applied.
+
+        //An operator is BINARY if it has two operands. The same minus exists in binary form as well:
+
+        let xa = 1, y = 3;
+        console.log(y - xa); //2, binary minus subtracts values.
+
+        /*Remainder %
+        
+        The remainder operator (%) is not related to percentages. The result of a % b is the remainder of the integer division of a by b. For example:
+        */
+
+        console.log(5 % 2); //1 the remainder of 5 / 2
+        console.log(8 % 3); //2, the remainder of 8 / 3
+        console.log(8 % 4); //0, the remainder of 8 / 4
+
+        /*Exponentiation **
+        
+        The exponentiation operator a ** b raises a to the power of b. For instance:
+        */
+
+        console.log(2 ** 2); //4
+        console.log(2 ** 3); //8
+        console.log(2 ** 4); //16
+
+        //Just like in maths, the exponentiation operator is defined for non-integer numbers as well. For example, a square root is an exponentiation by 1/2:
+
+        console.log(4 ** (1/2)); //2 (power of 1/2 is same as SQUARE root)
+        console.log(8 ** (1/3)); //2 (power of 1/3 is same as CUBIC root)
+
+        /*String concatenation with binary +
+        
+        Usually, the plus operator (+) sums numbers. But if the binary + is applied to strings, it merges (concatenates) them:*/
+
+        let s = "my" + "string";
+        console.log(s); //mystring
+
+        //If any of the operands is a string, then the other one is converted to a string too:
+
+        console.log('1' + 2); //"12"
+        console.log(2 + '1'); // "21"
+
+        /*Numeric Conversion, unary +
+        
+        The plus + exists in two forms: the binary form (that we used above) and the unary form.
+        
+        The unary plus or, in other words, the plus when added to a single value, doesn't do anthing to numbers. However, if the operand is not a number, the 
+        unary plus converts it into a number. See below:*/
+
+        let xc = 1;
+        console.log(+x); //outputs 1 (no change)
+
+        let ya = -2;
+        console.log(+y) //outputs -2 (no change)
+
+        //Converts non-numbers:
+        console.log(+true); //1
+        console.log(+""); //0
+
+        /*It actually does the same thing as "Number(), but in short!
+        
+        The need to do this comes up when getting values from a HTML form fields (whihc are usually strings). What if we want to sum them?
+
+        Binary plus would add them as strings:
+        */
+
+        let apples = "2";
+        let oranges = "3";
+
+        console.log(apples + oranges); //"23", is contatenated
+
+        //If we want to treat them as nubmers, we need to convert and then sum them:
+
+        console.log(+apples + +oranges); //both values converted to numbers before the binary plus. Outputs 5
+
+        /*Chaining assignments
+        
+        Another interesting feature is the ability to chain assignments:*/
+
+        let d, e, f;
+
+        d = e = f = 2 + 2;
+
+        console.log(d); //4
+        console.log(e); //4
+        console.log(f); //4
+
+        /*Chained assignments evaluate from right to left! First, the rightmost expression '2 + 2' is evaluated and then assigned to the variables on the left f, e, and d.
+        At the end, all the variables share a single value.
+        
+        Once again, for the purposes of readability, it is better to split such code into a few lines.*/
+
+        /*Modify in place
+        
+        We often need to apply an operator to a variable and store the new result in that same variable. For example:*/
+
+        let n = 2;
+        n = n + 5;
+        n = n * 2;
+
+        //This notation can be shortened using the operators += and *=:
+
+        let na = 2;
+        na += 5; //now na = 7 (same as na = na + 5;)
+        na *= 2; //now na = 14 (same as na = na * 2;)
+
+        console.log(na); //14
+
+        /*Increment and decrement
+        
+        As previously mentioned, we can assign increment or decrement only to variables, and this can be done before or after the variable - i.e.:
+        
+        ++counter
+        OR
+        counter++
+        
+        Is there a difference?
+
+        They do exactly the same thing, but there is a difference, but we can only see it if we use the returned value of ++/--.
+
+        As we know, all operators return a value. The prefix form returns the new value while the postfix form returns the old value (prior to increment/decrement).
+        */
+
+        let counterA = 1;
+        let ac = ++counterA; //(*)
+
+        console.log(ac);
+
+        //So, in the line (*), the prefix form ++counter increments counter and returns the new value, 2. So, the console shows 2.
+
+        //Now, let's use the postfix form:
+
+        let counterB = 1;
+        let ad = counterB++; //(*) Now postfix
+
+        console.log(ad); //1
+
+        //In the line (*), the postfix form counter++ also increments counter but returns the old value (prior to increment). So, the console shows 1.
+
+        /*Bitwise operators
+        
+        Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation. 
+        
+        They are, of course, not JS specific, and you've seen them in Java and C#. The list is as follows:
+        
+        AND                     &
+        OR                      |
+        XOR                     ^
+        NOT                     ~
+        LEFT SHIFT              <<
+        RIGHT SHIFT             >>
+        ZERO-FILL RIGHT SHIFT   >>>
+
+        These are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. Web development has very little use of them, but in some 
+        special areas, such as cryptography, they are useful.*/
+
+        /*Comma Operator
+        
+        The comma operator is one of the rarest and most unusual operator. Sometimes, it's used to write shorted code, so we need to know it in order to understand 
+        what's going on.
+        
+        The comma operator allows us to evaluate several expressions, dividing them with a comma ','. Each of them is evaluated but only the result of the last one 
+        is returned. For example:*/
+
+        let ae = (1 + 2, 3 + 4);
+
+        console.log(ae); //7 (the result of 3 + 4)
+
+        /*Here, the first expression is evaluated and then thrown away. Then 3 + 4 is evaluated and returned as the result.
+
+        NOTE: the comma operator has an extremely low precedence - even lower than the = operator. So you must you brackets () when using the comma operator, 
+        otherwise the expression will be evaluated before it uses that comma operator!
+
+        Why do we need an operator that throws away everything except the last expression?
+
+        Sometimes, people use it in more complex contracts to put several actions in one line. For example:*/
+
+        // three operations in one line
+        for (a = 1, b = 3, c = a * b; a < 10; a++) 
+        {
+            //code to be executed in the for loop here
+        }
+
+        /*
+        10
+        -1
+        error?
+        2
+        6
+        9px
+        $45
+        2
+        NaN
+         -9 5
+        -14
+        1
+        NaN
+        ?
+        */
+
+    </script>
+</body>
+</html>

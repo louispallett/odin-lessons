@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods</title>
+</head>
+<body>
+    <script>
+        /*JS Array Methods
+        
+        Converting Arrays to Strings
+        
+        The JS method toString() converts an array to a string of (comma seperated) array values:*/
+
+        let fruits = ["Banana", "Orange", "Apple", "Mango"];
+        console.log(fruits.toString()); //Banana,Orange,Apple,Mango
+
+        /*There is also the join() method, which joins all array elements into a string.
+        
+        It behaves just like toString(), but in addition you can specify the seperator:*/
+
+        console.log(fruits.join(" * ")); //Banana * Orange * Apple * Mango
+
+        /*Popping and Pushing
+        
+        It's easy to remove and add new elements. Remember:
+        
+            Popping items OUT of an array, or pushing items INTO an array.*/
+
+        /*The JS Array pop()
+        
+        The pop() method removes the last element from an array:*/
+
+        const studentNames = ["Joe", "David", "Louis", "Sonia", "Ollie", "Rhianna", "Megan"];
+        studentNames.pop();
+
+        console.log(studentNames); //"Joe", "David", "Louis", "Sonia", "Ollie", "Rhianna"
+
+        //The pop() method will return the value that was popped out:
+
+        fruits = fruits.pop();
+        console.log(fruits); //Mango
+
+        //We know the push() method - this adds an element to the end of an array!
+
+        studentNames.push("Katie");
+        console.log(studentNames); //'Joe', 'David', 'Louis', 'Sonia', 'Ollie', 'Rhianna', 'Katie'
+
+        //You can also use it to return the new array length:
+
+        let length = studentNames.push("John");
+        console.log(length); //8
+
+        /*Shifting Elements
+        
+        Shifting is similar to popping, except for the first element (not the last)*/
+
+        /*JS Array shift()
+        
+        The shift() method removes the first array element and shifts all other elements to a lower index:*/
+
+        studentNames.shift(); //removes "Joe"
+        let student = studentNames.shift(); 
+        console.log(student); //returns "David" (had we not already removed "Joe", this would have returned "Joe")
+
+        /*JS Array unshift()
+        
+        This adds a new element to an array (at the beginning) and "unshifts" older elements:*/
+
+        studentNames.unshift("David");
+        console.log(studentNames); //'David', 'Louis', 'Sonia', 'Ollie', 'Rhianna', 'Katie', 'John'
+
+        /*WARNING: there is an operator "delete" in JS, but DO NOT USE IT - can leave undefined holes in an array - just use pop or shift instead*/
+
+        /*Concatenating (merging) Arrays
+        
+        The concat() method creates a new array by merging existing arrays:*/
+
+        const myBoys = ["John", "Roman", "Jeff"];
+        const myGirls = ["Emily", "Laura"];
+        const myChildren = myGirls.concat(myBoys);
+
+        console.log(myChildren); //'Emily', 'Laura', 'John', 'Roman', 'Jeff'
+
+        //concat() does not CHANGE an array - it just returns a new array (hence it has to be defined to a variable or used once, like so):
+
+        console.log(myGirls.concat(myBoys)); ////'Emily', 'Laura', 'John', 'Roman', 'Jeff'
+
+        //You can also just merge it with a value:
+
+        console.log(myBoys.concat("Peter")); //"John", "Roman", "Jeff", "Peter"
+
+        /*Splicing and Slicing Arrays
+        The splice() method adds new items to an array.
+
+        The slice() method slices out a piece of an array. */
+
+        /*JavaScript Array splice()
+        
+        The splice() method can be used to add new items to an array:*/
+
+        const vegetables = ["Carrots", "Broccoli", "Spinach", "Kale"];
+        vegetables.splice(2, 0, "Courgette", "Fennel");
+
+        console.log(vegetables); //'Carrots', 'Broccoli', 'Courgette', 'Fennel', 'Spinach', 'Kale'
+
+        //Use splice() to remove elements:
+
+        vegetables.splice(0, 1);
+        console.log(vegetables);//'Broccoli', 'Courgette', 'Fennel', 'Spinach', 'Kale' (Carrots removed!)
+
+        //0 defines from where this is being one, whilst 1 defines how many should be removed.
+
+        /*JS Array slice()
+        
+        The slice() method slices out a piece of an array into a new array.
+        
+        This example slices out part of an array starting from array element 1:*/
+
+        const breadTypes = ["White", "Brown", "Tiger", "50/50", "Granary"];
+        const whiteBread = breadTypes.slice(2); //'Tiger', '50/50', 'Granary'
+
+        /*Note
+        The slice() method creates a new array.
+
+        The slice() method does not remove any elements from the source array.*/
+
+        console.log(whiteBread); //White
+
+        //It can also take in two parameters - start and up to (but NOT including) an end element:
+
+        const normalBread = breadTypes.slice(0, 2); 
+        console.log(normalBread); //'White', 'Brown'
+
+        
+
+
+
+
+    </script>
+</body>
+</html>

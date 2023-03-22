@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looping Code</title>
+</head>
+<body>
+
+    <label for="search">Search by contact name: </label>
+    <input id="search" type="text" />
+    <button>Search</button>
+
+    <p></p>
+
+    <label for="number">Enter number: </label>
+    <input id="number" type="text" />
+    <button>Generate integer squares</button>
+
+    <p>Output:</p>
+
+
+    <script>
+        /*Looping through a collection
+        
+            When using a loop, you want to loop through a collection. One type of collection is an Array. But there are also other collections in JS too, such as "Set" and "Map".
+            
+            The for...of loop
+            
+            This is the basic tool for looping through a collection:*/
+
+            const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
+
+            for (const cat of cats)
+            {
+                console.log(cat); //Loops through the elements of the arrays one at a time.
+            }
+
+            /*In this example, for (const cat of cats) says:
+
+            1.  Given the collection cats, get the first item in the collection.
+            2.  Assign it to the variable cat and then run the code between the curly brackets {}.
+            3.  Get the next item, and repeat (2) until you've reached the end of the collection.*/
+
+        /*map() and filter()
+        
+            JS also has more specialised loops for collections - these are two of them.
+            
+            You can use map() to do something to each item in a collection and create a new collection containing the changed items:*/
+
+            function toUpper(string)
+            {
+                return string.toUpperCase();
+            }
+
+            const upperCats = cats.map(toUpper);
+
+            console.log(upperCats); //'LEOPARD', 'SERVAL', 'JAGUAR', 'TIGER', 'CARACAL', 'LION'
+
+            /*Here, map() calls the function once for each item in the array, passing in the item. It then adds the return value from each function call to a new array, and finally
+            returns the new array. In this case the function we provide converts the item to upper case, so the resulting array contains all our cats in uppercase.
+            
+            You can use filter() to test each item in a collection and create a new one containing only those items which match:*/
+
+            function lCat(cat)
+            {
+                return cat.startsWith("L");
+            }
+
+            //declare const cats (already declared)
+
+            const filtered = cats.filter(lCat);
+
+            console.log(filtered); //'Leopard', 'Lion'
+
+            /*This looks like map(), but the function we pass returns a boolean (i.e. is it TRUE that the element begins with "L".
+            
+            NOTE: both map() and filter are often used with function expressions (which we learned about in fundamentals_3. Such as arrow functions:*/
+
+            const filteredS = cats.filter((cat) => cat.startsWith("S"));
+            console.log(filteredS); //"Serval"
+
+        /*The standard for loop
+        
+            The syntax for this is as follows:
+            
+                for (initializer; condition; final-expression)
+                {
+                    //code to run
+                }
+            
+            Here we have:
+            
+                1   The keyword for, followed by parentheses
+                2   Inside the parentheses we have three items seperated by ';':
+                    i   An initializer - sets a variable to a number, which is incremented to count the number of times to loop has run. Also sometimes refered to as a counter 
+                        variable.
+                    ii  A condition - this defines when the loop should stop looping. This is generally an expression featuring a comparison operator, a test to see if the exit 
+                        condition has been met.
+                    iii A final expression = this is always evaluated (or run) each time the loop has gone through a full iteration. It usually serves to increment (or decrement)
+                        the counter variable, to bring it closer to the point where the condition is no longer 'true'.
+                3   Some curly brackets that contain a block of code - this code will be run each time the loop iterates. */
+                        
+        /*Calculating squares
+        
+            Here is a great example of how to run a for loop with some very basic times tables (squares up to 9):*/
+
+            let results;
+
+            function calculate()
+            {
+                for(let i = 1; i < 10; i++)
+                {
+                    const newResult = `${i} x ${i} = ${i * i}\n`;
+                    return(newResult)
+                }
+            }
+
+        /*Looping through collections with a for loop
+        
+            In the code above on cats, we wrote the following:
+            
+            for (const cat of cats)
+                {
+                    console.log(cat);
+                }
+            
+            We could also write it like so:*/
+
+            for(let i = 0; i < cats.length; i++)
+            {
+                console.log(cats[i]);
+            }
+            /*Here we are stating that i should stop at the length of the array. In early iterations of JS the for...of loop didn't exist - so this was the standard way of looping through an array.
+
+            However, for...of is just much easier, so I would recommend sticking to that.
+            
+            BUT sometimes you might need to use a for loop to iterate through an array, such as in the code below we want to log a message listing our cats:*/
+
+            /*const catNames = ["Rex", "Ron", "Bobby"];
+
+            let myFavouriteCats = "My cats are called ";
+
+            for (const favCat of catNames)
+            {
+                myFavouriteCats += `${favCat} `
+            }
+
+            console.log(myFavouriteCats); //My cats are called Pete, Biggles, Jasmine,*/
+
+            //Instead, we should do the following:
+
+            const catNames = ["Rex", "Ron", "Bobby"];
+
+            let myFavouriteCats = "My cats are called ";
+
+            for(let i = 0; i < catNames.length; i++)
+            {
+                if (i === catNames.length - 1)
+                {
+                    //We are at the end of the array
+                    myFavouriteCats += `and ${catNames[i]}.`
+                } else
+                {
+                    myFavouriteCats += `${catNames[i]}, `
+                }
+            }
+
+            console.log(myFavouriteCats); //My cats are called Rex, Ron, and Bobby.
+
+        /*Exiting loops with break
+        
+            To exit a loop BEFORE ALL ITERATIONS HAVE BEEN COMPLETED, you can use the 'break' statment (just like in the switch statement!). When the code reaches a truthy
+            iteration in a switch statement, it exits the statement because it reaches 'break;'. It's the same with loops.
+            
+            Example: we want to search through an array of contacts and telephone numbers and return just the number we wanted to find? We had to add some simple HTML to do 
+            this - a text <input> allowing us to enter a name to search for, a <button> element to submit a search, and a <p> element to display the results in.
+                
+            Now, the JS:*/
+
+            const contacts = ["Chris:2232322", "Sarah:3453456", "Bill:7654322", "Mary:9998769", "Dianne:9384975"]
+            const para = document.querySelector("p");
+            const input = document.querySelector("input");
+            const btn = document.querySelector("button");
+
+            btn.addEventListener("click", () => 
+            {
+                const searchName = input.value.toLowerCase();
+                input.value = "";
+                input.focus();
+                para.textContent = "";
+                for (const contact of contacts)
+                {
+                    const splitContact = contact.split(":");
+                    if (splitContact[0].toLowerCase() === searchName)
+                    {
+                        para.textContent = `${splitContact[0]}'s number is ${splitContact[1]}.`;
+                        break;
+                    }
+                }
+                if (para.textContent === "")
+                {
+                    para.textContent = "Contact not found";
+                }
+            });
+
+            /*
+            1   Firstly, we have some variable definitions, including an array of the contact name and number - each item is a string and contains two things seperated by a 
+                colon.
+            2   We then attach the event listener to the button (btn), so when it's pressed some code is run and it returns a result.
+            3   We store the value entered into a variable called searchName and then empty it. We also run toLowerCase() so that it is case-insensitive.
+            4   In the for...of loop:
+                i   We split the current contact at the colon character, and store the resulting two values in an array called splitContact.
+                ii  We then run a conditional statement to test whether splitContact[0] (this being the contacts name) is equal to the searchName. If it is, we enter a string into the
+                    paragraph to report what the contact's number is, and use break to end the loop
+            5   After this, we check whether searchName is a contact and, if not, return some text ("Contract not found"). */
+        
+        /*Skipping iterations with continue
+        
+            You can also, in a for loop, skip iterations with 'continue'. The syntax for this is like so:
+            
+            for (let i = 1; i <= variable; i++)
+            {
+                code in function;
+                if (condition)
+                {
+                    continue;
+                }
+            } 
+            
+            "break" will set out of the function if the condition is true. Continue, on the other hand, will just skip over that iteration instead!
+            
+            For example:
+            
+            for (let i = 1; i <= num; i++) 
+            {
+                let sqRoot = Math.sqrt(i);
+                if (Math.floor(sqRoot) !== sqRoot) 
+                {
+                    continue;
+                }
+
+                console.log(`${i} `);
+            }
+            
+            What we are saying here is that if the variable sqRoot (defined as Math.sqrt(i) is NOT a sqRoot, then skip over that iteration. In other words, this function will print 
+            out the square roots up to a stated number.*/
+
+        /*while and do...while
+        
+            for is not the only type of loop available in JS. There are actually many others.
+            
+            The while loop looks like so:
+            
+                initializer
+                while (condition)
+                {
+                    //code to run
+
+                    final-expression
+                } 
+                
+            This is similar to the for loop, except that the initializer variable is set before the loop, and the final-expression is included inside the loop after the code is run
+            rather than these two items being included inside the parenteses. Lets look at an example! */
+
+            const pets = ["Hugo", "Ziggy", "Louis"];
+
+            let myFavouritePets = "My pets are called ";
+
+            let i = 0;
+
+            while (i < pets.length)
+            {
+                if (i === pets.length - 1)
+                {
+                    myFavouritePets += `and ${pets[i]}.`;
+                } else 
+                {
+                    myFavouritePets += `${pets[i]}, `;
+                }
+
+                i++
+            }
+
+            console.log(myFavouritePets); //My pets are called Hugo, Ziggy, and Louis.
+
+            /*The do...while loop is very similar, but provides a variation on the while structure
+            
+            initializer
+            
+            do
+            {
+                //code to run;
+
+                final-expression;
+            } while (condition) 
+            
+            The main difference between the two is that the code inside a do...while loop is always executed AT LEAST ONCE. That's beacause the condition comes after the code inside the
+            loop. In while and for loops, this check comes first, so the code may never execute.
+            
+            Again, another example:*/
+
+            const insects = ["Ant", "Bee", "Butterfly"];
+
+            let myFavouriteInsects = "My insects are called ";
+
+            let a = 0; //calling it a instead of i because of previous variable
+
+            do 
+            {
+                if (a === insects.length - 1)
+                {
+                    myFavouriteInsects += `and ${insects[a]}.`;
+                } else
+                {
+                    myFavouriteInsects += `${insects[a]}, `;
+                }
+
+                a++;
+            } while (a < insects.length);
+
+            console.log(myFavouriteInsects); //My insects are called Ant, Bee, and Butterfly.
+
+            /*Warning: With while and do...while — as with all loops — you must make sure that the initializer is incremented or, depending on the case, decremented, so the condition 
+            eventually becomes false. If not, the loop will go on forever, and either the browser will force it to stop, or it will crash. This is called an infinite loop.*/
+
+        /*Conclusion - which loop should I use?
+        
+        If you're iterating through an array or some other object that supports it, and don't NEED ACCESS to the index position of EACH item, then 'for...of' is the best choice. It's 
+        very easy to read and there#s less to go wrong.
+        
+        For other uses, 'for', 'while' and 'do...while' are largely interchangable. They can all be used to solve the same problems, and which one you use will largely depend on personal
+        preference. Although for() is recommended to begin with, as it's probably the easiest to remember - the initializer, conditiuon, and final expression all go into the parentheses, 
+        and, at any rate, we've seen them lots before!
+        
+        To conclude on the syntax:
+        
+        FOR...OF
+            
+            for (const item of array) 
+            {
+                // code to run
+            }
+            
+        FOR
+
+            for (initializer; condition; final-expression) 
+            {
+                // code to run
+            }
+
+        WHILE
+
+            initializer
+            while (condition) 
+            {
+                // code to run
+
+                final-expression
+            }
+        
+        DO...WHILE
+
+            initializer
+            do 
+            {
+                // code to run
+
+                final-expression
+            } while (condition)
+            
+            */
+        
+            
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Types</title>
+</head>
+<body>
+    <script>
+        /*Data Types
+        
+        A value in JS is always of a certain type. For example, a string or a number. There are eight basic data types in JS. We'll cover them here in general.
+
+        We can put any type in a variable. For example, a variable can at one moment be a string and then store a number:*/
+        
+        let message = "hello";
+        message = 123456;
+
+        //Languages that allow such things, such as JS, are called "dynamically typed", meaning that there exist data types, but variables are not bound by any of them.
+
+        let n = 123;
+        n = 12.345;
+
+        /*Number
+        
+        The number type represents both ingeger and floating point numbers.
+        
+        There are many operations for numbers, e.g. multiplication (*), division (/), addition (+), subtraction (-), and so on.
+        
+        Besides regular numbers, there are also the so-called "special numeric values", which also belong to this data type: "Infinity", "-Infinity", and "NaN"
+        
+        We can get infinity as a result of division by zero:*/
+
+        console.log(1 / 0);
+
+        //Or just reference it directly:
+
+        console.log(Infinity);
+
+        //NaN represents a computational error. It is a result of an incorrect of an unfedined mathematical operation, for instance:
+
+        console.log("not a number" / 2); //NaN, such a division is impossible
+
+        //Additionally, any mathematical operation on NaN returns NaN:
+
+        console.log(NaN + 1); //NaN
+
+        /*The only exception is NaN ** 0, which outputs 1.
+
+        We won't get 'fatal' errors in JS like in other languages - we can even divide by zero. At worst, we'll just get a NaN as the result.*/
+
+        /*BigInt
+        
+        In JS, the "number" type cannot safely represent integer values larger than 2^(53)-1 (that's 9007199254740991), or less than -(253-1) for negatives. To be accurate, they can store larger
+        numbers, but they will be less precise (and outside the safe integer range), because not all digits fit into the fixed 64-bit storage.
+        
+        For example, these two numbers below (which are just above the safe range), will return the same:*/
+
+        console.log(9007199254740991 + 1); 9007199254740992
+        console.log(9007199254740991 + 2); 9007199254740992
+
+        //Of course, for most purposes, this range is enough, but sometimes we need the entire range of really big integers (in cryptography or microsecond-precision timestamps).
+        //The BigInt value is created by appending n to the end of an integer:
+
+        const bigInt = 1234567890123456789012345678901234567890n; //'n' added at the end.
+
+        /*Strings
+        
+        In JS, there are three types of quotes (which Strings have to be surrounded by):
+        
+            Double quotes: "Hello".
+            Single quotes: 'Hello'.
+            Backticks: `Hello`./
+        
+        Double and single quotes are "simple" quotes. There's practically no difference between them in JS.
+
+        However, backticks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in ${...}, for example:*/ 
+
+        let name = "John";
+
+        //embed a variable
+        console.log(`Hello, ${name}!`); //Hello John!
+
+        //embed an expression
+        console.log(`the result is ${1 + 2}`); //the result is 3
+
+        /*Boolean (logical type)
+        
+        The boolean type only has two values: true and fale.
+
+        This is commonly used to store yes/no values. For instance:*/
+
+        let nameFieldChecked = true; //yes, name field is checked
+        let nameAgeChecked = false; //no, name field is not checked
+
+        //Boolean values also come as a result of comparisons:
+
+        let isGreater = 4 > 1;
+
+        console.log(isGreater); //true
+
+        /*The "null" value
+        
+        The special null value does not belong to any of the types described above. It forms a seperate type of its own which contains only the null value:*/
+
+        let age = null;
+
+        /*In JS, null is not a "reference to a non-existing object" or a "null pointer" like in some other languages. It's just a special value used to represent
+        "nothing", "empty", or "value unknown"
+        
+        The code above states that the age is unknown*/
+
+        /*The "undefined" value
+        
+        The special value "undefined" also stands apart. It's a type on it's own, like the "null" value.
+        
+        The meaning of undefined is "value is not assigned" (rather than value is not known!). If a variable is declared, but not assigned, then it's value is unknown:*/
+
+        let birthday;
+
+        console.log(birthday); //shows "undefined"
+
+        /*Objects and Symbols
+        
+        The object type is special.
+        
+        All other types are called primitive because their values can contain only a single thing (a string, number, or whatever). In contract, objects are used to store collections
+        of data and more complex entities.
+        
+        The symbol type is used to create uniquie identifiers for objects.*/
+
+        /*The typeof operator
+        
+        This returns the type of the operand. It's useful when we want to process values of different types differently or just want to do a quite check. A call to typeof x
+        returns a string with the type name:*/
+
+        typeof undefined; //undefined
+        typeof 0; //number
+        typeof 10n; //bigint
+        typeof true; //boolean
+        typeof "foo"; //string
+        typeof Symbol("id"); //symbol
+        typeof Math; //object
+        typeof null; //object
+        typeof alert; //function
+
+        /*Summary
+        
+        There are 8 basic data types in JavaScript.
+
+        Seven primitive data types:
+            number for numbers of any kind: integer or floating-point, integers are limited by ±(253-1).
+            bigint for integer numbers of arbitrary length.
+            string for strings. A string may have zero or more characters, there’s no separate single-character type.
+            boolean for true/false.
+            null for unknown values – a standalone type that has a single value null.
+            undefined for unassigned values – a standalone type that has a single value undefined.
+            symbol for unique identifiers.
+            
+        And one non-primitive data type:
+            object for more complex data structures.*/
+        
+    </script>
+
+</body>
+</html>

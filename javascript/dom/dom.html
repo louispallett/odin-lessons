@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM (Document Object Model</title>
+</head>
+<body>
+    <!--Example 1-->
+    <div id="container">
+        <div class="display"></div>
+        <div class="controls"></div>
+    </div>
+
+    <h1>
+        THE TITLE OF YOUR WEBPAGE
+    </h1>
+    <div id="nextContainer"></div>
+    <script>
+        /*Document Object Model (DOM)
+        
+        Aims in this lesson:
+        
+            1   Explain what the DOM is in relation to a webpage
+            2   Explain the difference between a "node" and an "element".
+            3   Explain how to target nodes with "selectors".
+            4   Explain the basic methods for finding/adding/removing and altering DOM notes.
+            5   Explain the difference between a "nodelist" and an "array of nodes".
+            6   Explain what "bubbling" is and how it works.
+            
+        The DOM is a tree like representation of the contents of a webpage. A tree of "nodes" with different relationships depending on how they are arranged on a HTML document. Let's 
+        consider example 1 in the HTML body!
+        
+        Here, <div class="display"></div> is the "child" of <div id="container">, which is the parent.
+            
+        Likewise, <div class="controls"></div> is it's "sibling" - it's all just it's family tree!*/
+
+        /*Targeting Nodes with Selectors
+        
+            Here is where it's all about working with the DOM. You use "selectors" to target nodes you want to work with. There are a combination of CSS style selectors and relationship
+            properties to target the nodes you want. The most obvious are CSS-syle selectors. In example 1 we could use:
+            
+            div.display                     The element <div> followed by the class "display"
+            .display                        The class "display"
+            #container > .display           The id "container" which is the parent of the element with the class "display"
+            div#container > div.display     The element div with the id "container" which is the parent of the element with the class "display"
+            
+            You can also use relational selectors (i.e. firstElementChild or lastElementChild) with special properties owned by the nodes:*/     
+
+            const container = document.querySelector("#container");
+            //selects the #container div 
+
+            console.dir(container.firstElementChild);
+            // selects the first child of #container => .display
+
+            const controls = document.querySelector(".controls");
+            //selects the .controls div
+
+            console.dir(controls.previousElementSibling);
+            //selects the prior sibling => .display
+
+            /*So, you're identifying certain nodes based on their relationship to the nodes around them.*/
+
+        /*DOM methods
+        
+            One of the critical differences is that these nodes are objects that have many properties and methods attached to them. These are the primary tools we are going to use to manipulate
+            our web page with JS. Starting with query selector - which help you target nodes.
+            
+            Query Selectors
+                1   element.querySelector(selector) returns a reference to the first match of selector
+                2   element.querySelectorAll(selectors) returns a "nodelist" containing references to all of the matches of the selectors
+                
+                (there are several others, of course, but these two are covered here).
+                
+                NOTE: When using querySelectorAll, the return value is NOT an array. It looks like an array and acts (somewhat) like an array, but it's really a "nodelist". The distinction is
+                that several array methods are missing from nodelists. One solution, if the problem arises, is to convert the nodelist into an array. You can do this with 
+                Array.from() or the spread operator(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)*/
+
+            /*Element Creation
+            
+                document.createElement(tagName, [options])
+                
+                This creates a new element of a tag type tagName. [options] in this case means you can add some optional parameters to the function:*/
+
+                const div = document.createElement("div");
+
+                /*This function DOES NOT put your new element into the DOM - it simply creates it in the memory. This is so that you can manipulate the element (by adding styles, classes, ids, text, etc.)
+                You can place the element into the DOM with one of the following methods:
+                
+                    Append Elements
+                    
+                        parentNode.appendChild(childNode) appends childNote as the last child of the parentNode.
+                        
+                        parentNode.insertBefore(newNode, referenceNode) inserts newNode into parentNode before referenceNode).
+                    
+                    Remove Elements
+                    
+                        parentNode.removeChild(child) removes child from parentNode on the DOM and returns a reference to child.
+                        
+                    Altering Elements
+                    
+                        When you have a reference to an element, you can use that reference to alter the element's own properties. This allows you to do many useful alterations, like adding/removing and altering
+                        attributes, changing classes, adding inline style information and more:
+
+                        const div = document.createElement("div");
+                        //creates a new div references in the variable "div".*/container
+            
+            
+            /*Adding Inline Style*/
+
+                div.style.color = "blue";
+                //adds the indicated style rule
+
+                div.style.cssText = "color: blue; background: white;";
+                //adds several style rules
+
+                div.setAttribute("style", "color: blue; backgound: white;");
+                //adds several style rules
+
+                /*Note that if you’re accessing a kebab-cased CSS rule from JS, you’ll either need to use camelCase or you’ll need to use bracket notation instead of dot notation.
+                
+                    div.style.background-color // doesn't work - attempts to subtract color from div.style.background
+                    div.style.backgroundColor // accesses the div's background-color style
+                    div.style['background-color'] // also works
+                    div.style.cssText = "background-color: white;" // ok in a string
+                    
+                There is a full list of CSS style rules here: http://domenlightenment.com/#6.2*/
+
+            /*Editing Attributes*/
+
+                div.setAttribute("id", "theDiv");
+                // if id exists, update it to 'theDiv', else create an id
+                // with value "theDiv"
+
+                div.getAttribute("id");
+                // returns value of specified attribute, in this case "theDiv".
+
+                div.removeAttribute("id");
+                //removes specified attribute
+
+                //There is a full list of HTML attributes here: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+
+            /*Working with classes*/
+
+                div.classList.add("new");
+                //adds class "new" to your new div
+
+                div.classList.remove("new");
+                //removes "new" class from div
+
+                div.classList.toggle("active");
+                //if the div doesn't have class "active" then add it, or if it does, then remove it
+
+                //It is often standard (and cleaner!) to toggle a CSS style rather than adding and removing inline CSS.
+
+            /*Adding Text Content*/
+
+                div.textContent = "Hello World!";
+                //creates a text node containing "Hello World!" and inserts it in div.
+
+            /*Adding HTML Content*/
+
+                div.innerHTML = "<span>Hello World!</span>";
+                //renders the HTML inside div
+
+                /*NOTE: textContent is preferable for adding text, and innerHTML should be used SPARINGLY as it can create security risks if misused. Get a reminder of this through this
+                video: https://www.youtube.com/watch?v=ns1LX6mEvyM&ab_channel=WebDevSimplified.
+                
+            Now, check out this example (example 2 in the HTML) of creating and appending a DOM element to a webpage:*/
+
+                const nextContainer = document.querySelector("#nextContainer");
+
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.textContent = "This is the glorious text-content!";
+
+                nextContainer.appendChild(content);
+
+            //NOTE: if you run the HTML in a webpage, it will show up the content - but it of course won't alter the actual HTML file - just the DOM.
+            
+            /*To link the JS file to your HTML one, use <script src="js-file.js" defer>(then</scrip(t)> but without the brackets (t) - it won't let me just write it out!)*/
+        
+    </script>
+</body>
+</html>

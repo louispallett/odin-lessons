@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparisons</title>
+</head>
+<body>
+    <script>
+        /*Comparisons:
+        
+        One example of a comparison met before is the boolean. For example*/
+
+        let result = 5 > 4;
+        console.log(result);
+
+        /*String comparison
+        
+        To see whether a string is greater than another, JS uses the so called "dictionary" or "lexicographical" order.
+        
+        In other words, strings are compared letter-by-letter:*/
+
+        console.log("Z" > "A"); //true
+        console.log("Glow" > "Glee"); //true
+        console.log("Bee" > "Be"); //true
+
+        /*The algorithm to compare two strings is simple:
+
+        1. Compare the first character of both strings.
+        2. If the first character from the first string is greater (or less) than the other string’s, then the first string is greater (or less) than the second. We’re done.
+        3. Otherwise, if both strings’ first characters are the same, compare the second characters the same way.
+        4. Repeat until the end of either string.
+        5. If both strings end at the same length, then they are equal. Otherwise, the longer string is greater.
+        
+        This isn't a real dictionary, but Unicode order. For example, the capital letter "A" is not equal to it's lower case "a". The lower case is greater, because it has a 
+        greater index in the internal encoding table JS uses (Unicode) - i.e. those 1s and 0s that make up a computer.*/
+
+        /*Comparison of different types
+        
+        When comparing calues of different types, JS converts the values to numbers:*/
+
+        console.log('2' > 1); //true - string 2 becomes a number
+        console.log('01' == 1); //true - string 01 becomes a number
+
+        //For boolean values, true becomes 1 and false becomes 0. For example:
+
+        console.log(true == 1); //true
+        console.log(false == 0); //true
+
+        /*Strict equality
+        
+        A regular equality check == has a problem. It cannot differentiate 0 from false:*/
+
+        console.log(0 == false); //true
+
+        //The same thing happens with an empty string:
+
+        console.log("" == false); //true
+
+        /*This happens because operands of different types are converted to numbers by the operator ==. An empty string, just like 'false' becomes a zero.
+        
+        What do we do if we want to differentiate 0 from false?
+        
+        This is where that strict equality operator (===) comes in handy. It checks the equality without type conversion.
+        
+        So, if a and b are of different types, then a === b would return a false result without attempting to convert them:*/
+
+        console.log(0 === false); //false, because they are different types (number and boolean)
+
+        /*Comparison with null and undefined
+        
+        There's a non-intuitive behaviour when null or undefined are compared to other values
+        
+        For a strict equality check (===)        
+        
+        These values below are different, because each ofg them are differnet */
+
+        console.log(null === undefined); //false
+
+        /*For a non-strict check (==)
+        
+        There's a special rule for this. These two are a "sweet couple": they equally each other (in the sense of ==), but not any other value:*/
+
+        console.log(null == undefined); //true
+
+        /*For maths and other comparisons (< >  <=  >=)
+        
+        null/undefined are converted to numbers: null becomes 0, while undefined becomes NaN.
+        
+        If we apply these rules, some odd things happen - what's important here is how not to fall into these traps:
+        
+        Strange result: null vs 0
+        
+        Let's compare null with a zero:*/
+
+        console.log(null > 0); // (1) false
+        console.log( null == 0 ); // (2) false
+        console.log( null >= 0 ); // (3) true
+
+        /*How does this make sense? Mathematically, it's strange. The last result states that null is greater than or equal to zero, so in one of the comparisons
+        above it must be true, but they are both false!
+        
+        The reason being that the equality check and comparisons > < >= <= work differently. Comparisons convert null to a number, treating it as 0. That's why (3) 
+        null >= 0 is true and (1) null > 0 is false.*/
+
+        /*An incomparable undefined
+        
+        The value undefined should NOT be compared to other values:*/
+
+        console.log(undefined > 0); // false (1)
+        console.log(undefined < 0); // false (2)
+        console.log(undefined == 0); // false (3)
+
+        /*Avoid problems:
+        
+        1.      Treat any comparison with undefined/null except the strict equality (===) with exceptional care.
+        2.      Don't use comparisons >= > < <= with a variable which may be null/undefined, unless you're really sure what you're doing. If a variable can have these 
+                values, check for them seperately.
+                
+        true
+        false
+        false
+        true
+        false
+        */
+
+        let officialName = prompt("What's the \"Official\" name of JavaScript");
+
+        if(officialName == "ECMAScript")
+        {
+            alert("Right!");
+        } else 
+        {
+            alert("You don't know? ECMAScript!");
+        }
+
+        let chosenNumber = prompt("Give a number.");
+
+        if(chosenNumber > 0)
+        {
+            alert(1);
+        } else if (chosenNumber < 0)
+        {
+            alert(-1);
+        } else
+        {
+            alert(0);
+        }
+
+
+    </script>
+</body>
+</html>

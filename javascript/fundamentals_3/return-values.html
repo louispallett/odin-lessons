@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Values</title>
+</head>
+<body>
+    <script>
+        /*Return Values
+        
+        Return values are the values that a function returns when it completes. Let's see an example:*/
+
+        const myText = "The weather is cold";
+        const newString = myText.replace("cold", "warm");
+
+        console.log(newString); //The weather is warm
+
+        /*Generally, a return value is used where the function is an intermediate step in a calculation of some kind. You want to get a final result, which involves 
+        some values that need to be calculated by a function. After the function calculates the value, it can return the result so it can be stored in a variable; and 
+        you can use this variable in the next stage of the calculation.*/
+
+        /*Using return values in your own functions
+        
+        To do this, you need to use the return() keyword.*/
+
+        function draw() {
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        for (let i = 0; i < 100; i++) {
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(255,0,0,0.5)";
+            ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        }
+
+        /*nside each loop iteration, three calls are made to the random() function, to generate a random value for the current circle's x-coordinate, y-coordinate, and radius, 
+        respectively. The random() function takes one parameter — a whole number — and returns a whole random number between 0 and that number. It looks like this:*/
+
+        function random(number)
+        {
+            return Math.floor(Math.random() * number);
+        }
+
+        //Could be written as follows:
+
+        function random(number)
+        {
+            const result = Math.floor(Math.random() * number);
+            return result;
+        }
+
+        /*But the first version is more compact (and quicker to write!)
+        
+        We are returning the result of a calculation each time the function is called.*/
+
+    </script>
+</body>
+</html>

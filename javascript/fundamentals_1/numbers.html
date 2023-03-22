@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numbers in JavaScript</title>
+</head>
+<body>
+    <script>
+        /*The following operators are used in JavaScript:
+        +   Addition
+        -   Subtraction
+        *   Multiplication
+        **  Exponentiation (to the power of)
+        /   Division
+        %   Modulus (Remainder)
+        ++ Incredment
+        --  Decrement
+        */
+
+        /*Arithmetic Operations
+        A typical arithmetic operation operates on two numbers.
+
+        They can be literals:
+
+        let x = 100 + 50;
+
+        Or they can be variables:
+
+        let x = a + b;
+
+        Or expressions:
+        */
+        let x = (100 + 50) * a;
+
+        /*Operators and Operands
+        The numbers (in an arithmetic operation) are called operands.
+        The operation is defined by an operator:
+        
+        Operand         Operator        Operand
+        100             +               50
+        */
+
+        let y = 100 + 50 * 3;
+        
+        /*Operator Precedence 
+        
+        Is the result of the example above the same as 150*3 or isit the same as 100 + 50? i.e. Is addition or multiplication done first?
+
+        Just like traditional maths, multiplication is done first (BIDMAS).
+
+        Multiplication (*) and division (/) have a higher precedence than addition (+) and subtraction (-).
+
+        And parentheses () are always completed first.
+
+        BUT unlike BIDMAS - it's actually just multiplation and division and then addition and subtraction (only two levels of priority)
+
+        If this is conflicted, it is just done from left to right! So, below
+        */
+        let r = 100 / 50 * 3;
+
+        //The above would do 100 / 50 first (2) and then 2 * 3 so would output 6.
+
+    </script>
+</body>
+</html>

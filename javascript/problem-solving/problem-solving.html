@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Solving</title>
+</head>
+<body>
+    <script>
+        /*Problem solving
+        
+        Problem solving is one of the most difficult things for developers to learn, but it is the most important skill by far. Effectively, all programming is problem 
+        solving, just using languages.
+        
+        This lesson covers these important points, but isn't going into much actual coding:
+        
+        1   Explain the three steps in the problem solving process.
+        2   Explain what pseudocode is and be able to use it to solve problems.
+        3   Be able to break a problem down into subproblems.
+        
+        The three steps in problem solving:
+        
+        1   Understand exactly what the problem is.
+        
+            Techniques include:
+                Writing it down on paper, rewording it in plain English until it makes sense to you.
+                Draw diagrams if it helps.
+                Try and explain the problem in plain English to someone else - until you can do this you don't understand the problem fully!
+        
+        2   Plan 
+                You should try to answer the following questions BEFORE writing any code:   
+                
+                Does your program have a user interface? What will it look like? What functionality will the interface have? Sketch this out on paper.
+                What inputs will your program have? Will the user enter data or will you get input from somewhere else?
+                What’s the desired output?
+                Given your inputs, what are the steps necessary to return the desired output?
+                
+    
+                Pseudocode?
+            
+                        This is writing out the logic for your program in natural language instead of code. It helps you slow down and think through the steps your program will have to go through to solve the problem.
+                    
+                        Here is an example:
+                        
+                            When the user inputs a number
+                            Initialize a counter variable and set its value to zero
+                            While counter is smaller than user inputted number increment the counter by one
+                            Print the value of the counter variable
+                
+        3   Divide and Conquer!
+        
+            Your problem is made up of subproblems. It's tempting (and a common mistake) to try and solve the big problem first - DON'T DO THIS. Instead divide the problems 
+            into smaller ones and try and solve them. If it's too big, you'll just get yourself tied in knots.
+            
+    FizzBuzz
+    
+    Fizz buzz is a group word game for children to teach them about division. Players take turns to count incrementally, replacing any number divisible by three with 
+    the word "fizz", and any number divisible by five with the word "buzz", and any number divisible by both 3 and 5 with the word "fizzbuzz".
+    
+    Fizz buzz (often spelled FizzBuzz in this context) has been used as an interview screening device for computer programmers. Writing a program to output the 
+    first 100 FizzBuzz numbers is a relatively trivial problem requiring little more than a loop and conditional statements. However, its value in coding interviews 
+    is to analyze fundamental coding habits that may be indicative of overall coding ingenuity.
+    
+    Write a program that takes a user’s input and prints the numbers from one to the number the user entered. However, for multiples of three print Fizz instead of 
+    the number and for the multiples of five print Buzz. For numbers which are multiples of both three and five print FizzBuzz.
+    
+    The first thing we need to do is get a number from the user. This can be done using the prompt method:*/
+
+    let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
+
+    /*parseInt() takes a string and returns an integer
+
+    /The above code creates a pop-up box asking for a number to be entered. It then stores it in the variable "answer"
+
+    With that done, we need to move onto the next subproblem - loop from 1 to the entered number (answer). There are many ways to do this but we already know one - the for loop!*/
+
+ for(let i = 1; i <= answer; i++)
+    {
+        console.log(i);
+    }
+
+
+    /*We know what a for loop is of course, but it's useful to go over what is happening here. If we launch this page, and enter '18' into the prompt, the console will write out
+    all numbers from 1 to 18 (and including) 18. So what's happening here?
+    
+    What is being said is that we are declaring a variable (i) and assigning it the first number in the sequence (here this is 1 - in many for loops this usually starts at 0, but for
+    this programme 1 makes far more sense). The second clause we are saying that i should be less or equal to our variable answer, thus the loop stops when i is equal to answer.
+    Finally, i++ is simply incrementing i by 1 every iteration.
+    
+    With that working, we have to move onto the next problem: if the current number is divisible by 3 (with NO remainder), then print "Fizz":*/
+
+    for (let i = 1; i <= answer; i++) 
+    {
+        if (i % 3 === 0)
+        {
+            console.log("Fizz");
+        } else 
+        {
+            console.log(i);
+        }
+    }
+
+
+    /*So, now if we enter '10', the for loop counts up to 10, but with ever iteration which is a multiple of 3, returns "Fizz". 
+    
+    We are using the modulus operator (%) here to say that, basically, if the remainder of "i" divided by 3 is equal to 0 (i.e. a multiple of 3), then returns this - else return "i".
+    
+    So, the next problem is: if the current number is divisible by 5, then print "Buzz". Pretty straight forward given the last problem!*/
+
+
+    for (let i = 1; i <= answer; i++) 
+    {
+        if (i % 3 === 0)
+        {
+            console.log("Fizz");
+        } else if (i % 5 === 0)
+        {
+            console.log("Buzz");
+        } else 
+        {
+            console.log(i);
+        }
+    }
+
+
+    /*Finally, one more subproblem - if the current number is divisible by 3 and 5 then print FizzBuzz:*/
+
+    for (let i = 1; i <= answer; i++) 
+    {
+        if (i % 3 === 0 && i % 5 ===0)
+        {
+            console.log("FizzBuzz");
+        } else if (i % 3 ===0)
+        {
+            console.log("Fizz");
+        } else if (i % 5 === 0)
+        {
+            console.log("Buzz");
+        } else 
+        {
+            console.log(i);
+        }
+    }
+
+    /*So, we had to move stuff around a little. If we had kept the i % 3 check first, then it would have run this before the 3 and 5 check and therefore would have 
+    changed values like 15 BEFORE checking if it was divisible by 5 AS WELL. Remember, when it reaches the first truthy value, the iteration stops!
+    
+    The program is now complete!*/
+
+    //NOTE for the program to work, you will have to highlight-out the first few for loops until only the final one is actually pulling through as code.
+    
+    </script>
+</body>
+</html>

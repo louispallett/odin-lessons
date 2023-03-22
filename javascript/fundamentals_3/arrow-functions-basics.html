@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Functions - the Basics</title>
+</head>
+<body>
+    <script>
+        /*Arrow functions - the basics
+        
+        This is a very simple and concise (but relatively new) way of writing functions, that's often better than expressions. "Arrow Functions" look like this:
+        
+        let func = (arg1, arg2, ..., argN) => expression;
+        
+        This creates a function (func) that accepts arguments arg1...argN, then evaluates the eexpression on the right side with their use and returns its results. 
+        In other words, a shorter version of:
+        
+        let func = function(arg1, arg2, ..., argN)
+        {
+            return expression;
+        };
+        
+        A concert example:*/
+
+        let sum = (a, b) => a + b;
+
+        /* This arrow function is a shorter form of:
+
+        let sum = function(a, b) {
+        return a + b;
+        };
+        */
+
+        console.log(sum(1, 2)); //3
+
+        /*As you can see, (a, b) => a + b means a function that accepts two arguments named a and b. Upon the execution, it evaluates the expression a + b and returns 
+        the result.
+        
+        If there is only one argument, the parentheses can be removed:*/
+
+        let double = n => n * 2; 
+        // roughly the same as: let double = function(n) { return n * 2 }
+
+        console.log(double(3)); //6
+
+        /*Arrow functions can be used in the same way as expressions - like to dynamically create a function:*/
+
+        let age = prompt("What is your age?", 18);
+
+        let welcome = (age < 18) ?
+        () => alert("Hello!") : 
+        () => alert("Greetings");
+
+        welcome();
+
+        /*These arrow functions are fairly simple however, taking arguments from the left of =>, evaluated and returned the right-side expression with them.
+        
+        What about when we have a more complex function? In that case, we can enclose them with curly brackets. However, the major difference is that curly brackets
+        require a return within them to return a value (just like a regular function does). Like so:*/
+
+        let sum2 = (a, b) => 
+        { //the curly bracket opens a multiline function
+            let result = a + b;
+            return result; //must have an explicit return value when using curly brackets
+        }; //must end with a semi-colon!
+
+        console.log(sum2(1,2)); //3
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+</head>
+<body>
+    <script>
+        
+        //1
+            function add7 (number, seven)
+            {
+                seven = 7;
+                console.log(number + seven);
+            }
+
+            add7(2); //7
+            add7(12); //19
+        //2
+        function multiply (num1, num2)
+        {
+            console.log(num1 * num2);
+        }
+
+        multiply(5, 5);
+        multiply(120, 10);
+
+    //3
+
+    function capitalize (string)
+    {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    }
+
+    console.log(capitalize("cheese"));
+    console.log(capitalize("rOme"));
+    console.log(capitalize("HELLO THErE"));
+
+    //4
+
+    function lastLetter(string)
+    {
+        return string.slice(-1);
+    }
+
+    console.log(lastLetter("abcd"));
+    console.log(lastLetter("Going forth and finding new lands."));
+
+    </script>
+</body>
+</html>

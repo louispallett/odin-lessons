@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parameters and Arguments</title>
+</head>
+<body>
+    <script>
+        function faviouriteAnimal(animal) //function definition (function parameter)
+        {
+            return animal + " is my favourite animal!";
+        }
+
+        console.log(faviouriteAnimal("Goat"));
+
+        /*Parameters and Arguments
+        
+        In JS, parameters are the items listed between the parentheses in the function declaration. By putting animal as the parameter, we are telling JS that we will 
+        give some value when we call the faviouriteAnimal function. This makes the 'animal' just a placeholder for some future value. 
+        
+        "Goat" on the other hand, is our argument. log() is another function cell, so we are passing one function cell into another. You'll be doing this a lot in 
+        programming.*/
+
+        /*MDN Article - Functions
+        
+        Function Declaration
+        
+        To create a function we can use a function declaration. It looks like this:*/
+
+        function showMessage() 
+        {
+            console.log("Hello everyone!");
+        }
+
+        /*So function keyword followed by the name with parentheses after (with a parameter if necessary) and finally the code (also called the function body). Our 
+        function can be called by it's name:*/
+
+        showMessage();
+
+        /*Parameters
+        
+        We can pass arbitary data to functions using parameters. 
+        
+        In the example below, the function has two parameters: from and text:*/
+
+        function showMessage2(from, text)
+        {
+            console.log(from + " " + text);
+        }
+
+        showMessage2("Ann", "Hello!"); //Ann: Hello!
+        showMessage2("Ann", "What's up?"); //Ann: What's up?
+
+        /*This is a local variable but it can only be used in this function so is cleaner and quicker - we are just 'declaring' from and text when we call the 
+        function.*/
+
+        //In the below example, we pass a variable into 'from' before:
+
+        function showMessage3(from, text)
+        {
+            from = "*" + from + "*";
+            console.log(from + ": " + text);
+        }
+
+        let from = "Ann";
+
+        showMessage3(from, "Hello"); //*Ann*: Hello
+
+        /*Default values
+        
+        Modern JS engines support the nullish coalescing operator '??', it's better when most falsy values, such as 0, should be considered normal:*/
+
+        function showCount(count) 
+        {
+            console.log(count ?? "unknown"); //what we are saying is 'take in the parameter "count", but if nothing or undefined/null given (i.e. a false value), then return this'
+        }
+
+        showCount(0); //0
+        showCount(null) //unknown
+        showCount(); //unknown
+
+        /*Returning a value
+        
+        A function can return a value back into the calling code as the result. The simplest example would be a function that sums two values:*/
+
+        function sum(a, b)
+        {
+            return a + b;
+        }
+
+        let result = sum(1, 2);
+        console.log(result); //3
+
+        /*The directive return can be anywhere within the function, but when the execution reaches it, the function stops, adn the value is returned to the calling code.
+        
+        There may be many occurances of return in a singe function: for instance:*/
+
+        function checkAge(age) {
+        if (age >= 18) 
+        {
+            return true;
+        } else 
+        {
+            return confirm('Do you have permission from your parents?');
+        }
+        }
+
+        let age = prompt('How old are you?', 18);
+
+        if (checkAge(age)) 
+        {
+        console.log('Access granted');
+        } else 
+        {
+        console.log('Access denied');
+        }
+
+        //It is possible to use return without a value. This causes the function to exit immediately - for example:
+
+        function showMovie (age)
+        {
+            if (!checkAge(age))
+            {
+                return;
+            }
+
+            console.log("Showing you the movie");
+        }
+
+        showMovie(); //if check age returns false, then showMove won't proceed to the console.log().
+
+        /*Naming functions
+        
+        You should use a verb to start naming a function - such as 'showMovie' etc. Here is the general practice list:
+        
+        "get…"          return a value,
+        "calc…"         calculate something,
+        "create…"       create something,
+        "check…"        check something and return a boolean, etc.
+        
+        Also remember - one function, one action. Functions should only do one thing - not multiple things, just create multiple functions for this!*/
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!--
+Axes
+
+    The most confusing thing about flexbox is that it can work either horizontally or vertically, and the way those rules work change depending on whether we are 
+    dealing with horizontal or vertical direction.
+
+    The default direction for a flex container is horizontal, or 'row', but you can change the direction to vertical, or 'column'. The direction can be specified
+    in CSS like so:
+
+    .flex-container {
+        flex-direction: column;
+    }
+
+Main and cross axes
+
+    No matter which direction is being used, flex-containers need to be thought of as having 2 axes: the main axis and the cross axis. It is the direction of these
+    axes that changes when the flex direction is changed. In most circumstances, flex-direction: row puts the main axis horizontal (left-to-right), and column puts
+    the main axis vertical (top-to-bottom).
+
+    In other words, if we put display: flex; on a div and it arranged its children horizontally. This is a demonstration of flex-direction: row;, the default setting.
+    The following example (in the styles.css file) is very similar.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link ref="stylesheet" href="styles.css">
+    <title>Axes</title>
+</head>
+<body>
+   <div class="flex-container">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+   </div> 
+</body>
+</html>

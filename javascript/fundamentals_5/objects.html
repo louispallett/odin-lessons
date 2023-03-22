@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body>
+    
+    <script>
+        /*Objects
+        
+        We've actually met objects back when looking at Java! JS is based very much off Java, so it works similarly here and allows you to do very powerful things with JS. Objects allow us
+        to include a considerable amount of information within one thing, which can be accessed whenever we want to.
+        
+        An object can be created with figure brackets {...} with an optional list of properties. A property is a "key: value" pair, where key is a string (also called a "property name"), and 
+        value can be anything.
+        
+        An empty object ("empty cabinet" to use an analogy) can be created using one of two syntaxes:*/
+
+        let userA = new Object(); //"object contructor" syntax
+        let userB = {}; //"object literal" syntax
+
+        //So, we can think of this as the "userA" (or B) being an empty cabinet - we haven't put anything in yet!
+        //Usually, the object literal is used {...}
+
+        /*Literals and properties
+        
+        We can immediately put properties into {...} as "key-value" pairs:*/
+
+        let userC = 
+        {
+            name: "John", //note the use of "," rather than ";"
+            age: 30, //It's a good idea to put a comma even at the end - this is called a "trailing" or "hanging" comma - it makes it easier to add/remove/move properties.
+        }; //Needs to end with a semi-colon!
+
+        /*A property has a key (also known as a "name" or "identifier") before the colon ":" and a value to the right.
+        
+        There are two properties in the userC object - the first being a name and the second being an age.
+        
+        In our analogy, this can be imagined as things in the cabinet (which is named userC)
+        
+        We can add, remove, and read files from the cabinet at any time by using the dot notiation:*/
+
+        console.log(userC.name); //John
+        console.log(userC.age); //30
+
+        //The value can be any type - for example, a boolean:
+
+        userC.isAdmin = true;
+
+        console.log(userC.isAdmin); //true
+
+        //To remove a property, we use the delete operator:
+
+        delete userC.age;
+        console.log(userC.age); //undefined
+
+        //Multi-word property names must be quoted, such as "likes birds": true
+
+        /*Square brackets
+
+        If we have a property with multiwords, when we recall them we need to put them in square brackets WITHOUT the dot notation:*/ 
+
+        let userD = 
+        {
+            name: "David",
+            age: 20,
+            "likes birds": true,
+        };
+
+        console.log(userD["likes birds"]); //true
+
+        //Additionally, if we create a variable with whatever name we want BUT with the same value as a property, we can reference that like this:
+        
+            let key = "likes birds";
+
+            console.log(userD[key]); //true
+
+            //So, we aren't actually connecting the variable "key" to userD at all in it's declaration, aside from the fact it has the same value. We are then able to find out the value
+            //regardless - nice! However, the dot notation cannot be used this way:
+
+            console.log(userD.key); //undefined
+
+        /*Computed properties
+        
+        We can use square brackets in an object literal, when creating an object. That's called computed properties:*/
+
+        let fruit = prompt("Which fruit to buy?", "apple");
+
+        let bag = 
+        {
+            [fruit]: 5, //the name of the property is taken from the variable fruit
+        }; 
+
+        console.log(bag.apple); //5 if fruit = "apple"
+
+        /*The meaning of a computed property is simple: [fruit] means that the property name should be taken from 'fruit'.
+        
+        So, if a visitor enters "apple", "bag" will become {apple: 5}
+        
+        This actually works the same as:
+        
+            let fruit = prompt("Which fruit to buy?", "apple");
+            let bag = {};
+
+            // take property name from the fruit variable
+            bag[fruit] = 5;
+
+        ...But it looks much nicer!
+        
+        We can use more complex expressions inside square brackets:*/
+
+        let fruit2 = "apple";
+        let bag2 = 
+        {
+            [fruit + "Computers"]: 5, //bag.appleComputers = 5
+        };
+
+        /*The square brackets are much more powerful than the dot notation and allow any property names and variables, but are a little cumbersonme to write. So, when the property names 
+        are known and simple, the dot is used.*/
+
+        /*Property value shorthand
+        
+        In real code, we often use existing variables as values for property names:*/
+
+        function makeUser(name, age) 
+        {
+            return { //note, this needs to lie on the same line as return here (the '{')
+                name: name,
+                age: age,
+                // ...other properties
+            };
+        }
+
+        let userE = makeUser("John", 30);
+        console.log(userE.name); //John
+
+        /*In this example, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special property value shorthand to
+        make it shorter. 
+        
+        Instead of "name: name", we can just write "name", like so:
+        
+        function makeUser(name age)
+        {
+            return {
+                name, //same as name: name
+                age, //same as age: age
+            };
+        }
+        
+        We can also use a combination of normal properties and shorthand too!
+        
+        let user = 
+        {
+            name,  // same as name:name
+            age: 30
+        };*/
+
+        /*Property names limitations
+        
+        As already stated, we cannot use variable names such as 'for' 'let' and 'return', but when it comes to objects this doesn't matter!*/
+
+        let obj = {
+            for: 1,
+            let: 2,
+            return: 3,
+        };
+
+        console.log(obj.for + obj.let + obj.return); //6
+
+        /*In short, there are no limitations on property names - they can even be strings and symbols, but it's best to stick to something which makes sense.
+        Other types are auto convertered to strings.
+        
+        For example, a number 0 becomes a string "0" when used as a proprty key:*/
+
+        let obj2 = {
+            0: "test", //same as "0": "test"
+        };
+
+        // both alerts access the same property (the number 0 is converted to string "0")
+        console.log(obj["0"]); // test
+        console.log(obj[0]); // test (same property)
+
+        //there is a minor gotcha with a special property named _proto_. We can't set it to a non-object value:
+
+        let obj3 = {};
+        obj.__proto__ = 5; // assign a number
+        console.log(obj.__proto__); // [object Object]
+
+        //As we see from the code, the assignment to a primitive 5 is ignored.
+
+        /*Property existence test, “in” operator
+        
+        A notable and unique feature to objects in JS (unlike other languages!) is that it's possible to access any property, even if it doesn't actually exist.
+        
+        Reading a non-existing property will just return undefined - so we can easily test whether it exists or not:*/
+
+        let userF = {};
+
+        console.log(userF.noSuchProperty === undefined); //true - i.e. it doesn't exist, because it returned undefined.
+
+        /*There is also a special operator "in" for that - the syntax is:
+        
+        "key" in object
+        
+        For example:*/
+
+        let userG = {name: "John", age: 30};
+
+        console.log("age" in userG); //true, user.age exists
+        console.log("blabla" in userG); //false, user.blabla does not exist
+
+        /*The catch:
+        
+            The left side of "in" must be a property name - that's usually a quoted string. If we omit the quotes, that means a variable needs to be used to contain the actual variable. Such as:*/
+
+            let userH = {age: 30};
+
+            let objH = "age";
+            console.log(objH in userH); //true, property exists
+
+            /*The reason in exists is for a very specific case which is, to be honest, unlikely to happen. But comparing against "undefined" is ok until we have an object who's value IS defined as 
+            undefined, because, of course, this will tell us it is undefined despite the fact it exists. The thing is, objects shouldn't be defined as undefined generally - instead we would use 
+            "null", which is far better.
+            
+            So, use either "in" or "=== undefined". "in" seems easier though.*/
+
+        /*The "for...in" loop
+        
+        To walk over all keys of an object, there exists this special form of loop. This is completely different from the for loop!
+        
+        The sytax is:
+        
+        for (key in object) {
+            //executes the body for each key among the object properties
+        }
+        
+        So, let's output the properties of this user:*/
+
+        let userI = {
+            name: "John",
+            age: 30,
+            isAdmin: true,
+        };
+
+        for (let keyI in userI)
+        {
+            //keys
+            console.log(keyI); //name, age, isAdmin
+            //values of the keys
+            console.log(userI[keyI]); //John, 30, true
+        }
+
+        //We could use another variable name here instead of key. For instance, "for (let prop in obj)" is also widely used.
+
+        /*Ordered like an object
+        
+        Are objects ordered? I.e. if we loop over an object, do we get the properties in the same order they were added?
+        
+        Well, the short answer is "ordered in a special fashion". In the example above, the console doesn't log the properties in the same order as we might expect. The reason for this is that
+        integers are sorted, others appear in creation order. The details then follow.
+        
+        This can be difficult if we want numbers to appear unordered or in a certain non-standard order. For example, take phone numbers. The code for the UK is 44, but for Switzerland it's 41
+        
+        But if we are showing these options for a UK sight, we want the UK +44 to appear first. The quick way around this is to make the codes non-integer, in this case we can add a + in front of them
+        - now they aren't integers!*/
+
+        /*Summary:
+        
+        Objects are associative arrays with several special features.
+
+        They store properties (key-value pairs), where:
+
+            Property keys must be strings or symbols (usually strings).
+            Values can be of any type.
+        
+        To access a property, we can use:
+
+            The dot notation: obj.property.
+            Square brackets notation obj["property"]. Square brackets allow taking the key from a variable, like obj[varWithKey].
+        
+        Additional operators:
+
+            To delete a property: delete obj.prop.
+            To check if a property with the given key exists: "key" in obj.
+            To iterate over an object: for (let key in obj) loop.
+        
+        What we’ve studied in this chapter is called a “plain object”, or just Object.
+
+        There are many other kinds of objects in JavaScript:
+
+            Array to store ordered data collections,
+            Date to store the information about the date and time,
+            Error to store the information about an error.
+            …And so on.*/
+
+
+    </script>
+</body>
+</html>
